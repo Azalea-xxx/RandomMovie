@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подбрось монетку!</title>
+    <link rel="shortcut icon" href="/icons/coins.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="bg-dark text-light">
+    <main class="mt-5 mx-auto">
+        <div class="container px-5">
+            <!-- <div class="block"> -->
+                <div class="mx-auto">
+                    <div class="mx-auto h4">
+                        <form class="form mx-auto pt-5 d-flex flex-column justify-content-between">
+                            <div class="row pb-5">
+                                <div class="col-sm">
+                                    <label for="genre">Жанр:</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select id="genre" class="select px-2" style="width: 100%" name="genre">
+                                        <option value="" class="bg-dark">Без разницы</option>
+                                        <option value="" class="bg-dark">Action</option>
+                                        <option value="" class="bg-dark">Adventure</option>
+                                        <option value="" class="bg-dark">Animation</option>
+                                        <option value="" class="bg-dark">Crime</option>
+                                        <option value="" class="bg-dark">Documentary</option>
+                                        <option value="" class="bg-dark">Family</option>
+                                        <option value="" class="bg-dark">Fantasy</option>
+                                        <option value="" class="bg-dark">History</option>
+                                        <option value="" class="bg-dark">Horror</option>
+                                        <option value="" class="bg-dark">Music</option>
+                                        <option value="" class="bg-dark">Mystery</option>
+                                        <option value="" class="bg-dark">Romance</option>
+                                        <option value="" class="bg-dark">Science Fiction</option>
+                                        <option value="" class="bg-dark">TV Movie</option>
+                                        <option value="" class="bg-dark">Thriller</option>
+                                        <option value="" class="bg-dark">War</option>
+                                        <option value="" class="bg-dark">Western</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row pb-5">
+                                <div class="col-sm">
+                                    <label for="year">Год выпуска не раньше:</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select id="year" class="select px-2" style="width: 100%" name="year">
+                                        <option value="" class="bg-dark">Без разницы</option>
+                                        <option value="" class="bg-dark">2020</option>
+                                        <option value="" class="bg-dark">2018</option>
+                                        <option value="" class="bg-dark">2015</option>
+                                        <option value="" class="bg-dark">2010</option>
+                                        <option value="" class="bg-dark">2000</option>
+                                        <option value="" class="bg-dark">1990</option>0</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row pb-5">
+                                <div class="col-sm">
+                                    <label for="duration">Длительность меньше (в мин):</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select id="duration" class="select px-2" style="width: 100%" name="duration">
+                                        <option value="" class="bg-dark">Без разницы</option>
+                                        <option value="" class="bg-dark">90</option>
+                                        <option value="" class="bg-dark">105</option>
+                                        <option value="" class="bg-dark">120</option>
+                                        <option value="" class="bg-dark">150</option>
+                                        <option value="" class="bg-dark">180</option>
+                                        <option value="" class="bg-dark">200</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row pb-5">
+                                <div class="col-sm">
+                                    <label for="rating">Рейтинг больше:</label>
+                                </div>
+                                <div class="col-sm">
+                                    <select id="rating" class="select px-2" style="width: 100%" name="rating">
+                                        <option value="" class="bg-dark">Без разницы</option>
+                                        <!-- <option value="" class="bg-dark">9</option> -->
+                                        <option value="" class="bg-dark">8</option>
+                                        <option value="" class="bg-dark">7</option>
+                                        <option value="" class="bg-dark">6</option>
+                                        <option value="" class="bg-dark">5</option>
+                                        <option value="" class="bg-dark">4</option>
+                                        <option value="" class="bg-dark">3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="text-center h5">
+                                <button id="searchBtn" type="submit" style="width: 250px;" class="btn mb-5  font-weight-bold btn-success text-dark text-capitalize  "><strong>ИСКАТЬ!</strong></button>
+                            </div>
+                        </form>
+                    </div>  
+                </div>           
+                
+            <!-- </div> -->
+        </div>
+    </main>
+    <div class="message hide">
+        <div class="message__content row">              
+            <p class="message-text"></p>
+            <div class="text-center mt-2">
+                <button type="submit" style="width: 250px;" class="manyBtn btn font-weight-bold btn-success text-dark text-capitalize"><strong>Отстань</strong></button>   
+            </div>
+        </div>
+    </div>
+    <div class="modal hide">
+        <div class="modal__content row">
+            <div class="col-sm-4">
+                <div class="poster__wrapper">
+                    <div class="poster">
+                        <div>
+                            <img class="image__content" src="" alt="">
+                        </div>
+    
+                    </div>
+                    <div class="movie-info">
+                        <div class="rate mt-sm-4 text-center">
+                        
+                        </div>
+                        <div class="release-date my-sm-4 text-center" style="font-weight: bold;">
+                            
+                        </div>
+                        <div class="movie-id">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="col">
+                <article class="modal__description">
+                    
+                    <h2 class="modal__title">
+                        
+                    </h2>
+
+                    <section class="genres">
+                        <h3 class="genres__title"></h3>
+                        <ul class="genres-list">
+                            
+                        </ul>
+
+                        <div class="panel">
+                            <i id="addBtn" class="fa fa-heart fa-3x" alt="Добавить фильм к себе"></i>
+                        </div>
+                    </section>
+    
+                    <section class="header__info">
+    
+    
+                        <h3 class="review" dir="auto"></h3>
+                        <div class="overview" dir="auto">
+    
+                            <p class="description"></p>
+    
+                        </div>
+                        
+                    </section>
+                </article>
+                <div class="text-center mt-3">
+                    <button id="againBtn" type="submit" style="width: 250px;" class="mb-3 btn font-weight-bold btn-warning text-dark text-capitalize"><strong>НЕ ТО :(</strong></button>   
+                </div>
+                <div class="text-center">
+                    <button id="exitBtn" type="submit" style="width: 250px;" class="btn font-weight-bold btn-success text-dark text-capitalize exitBtn"><strong>Поменять фильтры</strong></button>   
+                </div>
+
+                
+            </div>
+                
+            
+        </div>
+    </div>
+    <div class="favourites">
+        <div class="fav-block">
+            <div class="fav-movies">
+                
+            </div>
+            <div class="favBtn">
+                <i class="fa fa-heart fa-2x" alt="Понравившиеся фильмы"></i>
+            </div>
+        </div>
+    </div>
+    <footer class="fixed-bottom mt-5 border-top border-secondary border-bottom">
+        <div class="container px-5 h-100">
+            <div class="mx-auto h-100">
+                <div class="row h-100">
+                    <div class="col-sm my-auto">
+                        <div>Рандомайзер фильмов</div>
+                    </div>
+                    
+                    <div class="col-sm my-auto" style="width: 100%;">
+                        <div style="text-align: right;">
+                            <a href="https://github.com/hatttfu" target="_blank" class="link-light">hatttfu</a>, 2021
+                        </div>
+                    </div>
+                </div>
+                <div class="row h-100 videoclub">
+                    <div class="col-sm my-auto">
+                        <div>Написано под <a href="https://open.spotify.com/artist/3rp4f58JlRHkk8hpdLCer1" target="_blank" class="link-light">Videoclub</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+    <script src="selects.js"></script>
+    <script src="https://kit.fontawesome.com/a121bf75ec.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+:root {
+	--bg-dark: #1a1a1a;
+	--bg-dark-2: #212529;
+	--text-light: #f8f9fa;
+	--text-muted: #6c757d;
+	--primary: #ffc107;
+	--primary-hover: #ffca2c;
+	--secondary: #6c757d;
+	--danger: #dc3545;
+	--danger-hover: #bb2d3b;
+	--border-color: #495057;
+}
+
+body {
+	background-color: var(--bg-dark);
+	color: var(--text-light);
+	overflow-x: hidden;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-dark-2 {
+	background-color: var(--bg-dark-2) !important;
+}
+
+/* Header */
+header {
+	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+		url('https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.png');
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+
+header::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100px;
+	background: linear-gradient(to bottom, transparent, var(--bg-dark));
+}
+
+/* Форма */
+.form-select,
+.form-control {
+	background-color: var(--bg-dark-2);
+	color: var(--text-light);
+	border: 1px solid var(--border-color);
+	transition: all 0.3s ease;
+}
+
+.form-select:focus,
+.form-control:focus {
+	background-color: var(--bg-dark-2);
+	color: var(--text-light);
+	border-color: var(--primary);
+	box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+.form-label {
+	font-weight: 500;
+}
+
+/* Кнопки */
+.btn-warning {
+	color: #000;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+	background-color: var(--primary-hover);
+	color: #000;
+	transform: translateY(-2px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-warning:hover {
+	color: #000;
+}
+
+.btn-danger {
+	background-color: var(--danger);
+	border-color: var(--danger);
+	transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+	background-color: var(--danger-hover);
+	border-color: var(--danger-hover);
+	transform: translateY(-2px);
+}
+
+/* Модальное окно */
+.modal-content {
+	border: 2px solid var(--primary);
+	box-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+}
+
+#moviePoster {
+	transition: transform 0.3s ease;
+}
+
+#moviePoster:hover {
+	transform: scale(1.03);
+}
+
+/* Жанры */
+.list-inline-item {
+	background-color: rgba(255, 193, 7, 0.2);
+	padding: 0.25rem 0.75rem;
+	border-radius: 50px;
+	margin-bottom: 0.5rem;
+	border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+/* Избранное */
+.favourites {
+	position: fixed;
+	top: 0;
+	right: -400px;
+	width: 400px;
+	height: 100vh;
+	background-color: var(--bg-dark-2);
+	z-index: 1050;
+	transition: right 0.3s ease-in-out;
+	box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+	overflow-y: auto;
+}
+
+.favourites.show {
+	right: 0;
+}
+
+.favourites-header {
+	background-color: rgba(0, 0, 0, 0.3);
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+
+.favourite-item {
+	background-color: var(--bg-dark);
+	border-radius: 8px;
+	overflow: hidden;
+	margin-bottom: 1rem;
+	transition: all 0.3s ease;
+	border: 1px solid var(--border-color);
+}
+
+.favourite-item:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.favourite-poster {
+	height: 120px;
+	background-size: cover;
+	background-position: center;
+}
+
+.favourite-info {
+	padding: 1rem;
+}
+
+.favourite-title {
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+}
+
+.favourite-meta {
+	font-size: 0.85rem;
+	color: var(--text-muted);
+	margin-bottom: 0.5rem;
+}
+
+.favourite-overview {
+	font-size: 0.9rem;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	margin-bottom: 1rem;
+}
+
+.remove-btn {
+	width: 100%;
+}
+
+/* Кнопка избранного */
+#favBtn {
+	z-index: 1040;
+	transition: all 0.3s ease;
+	border-top-right-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+#favBtn:hover {
+	transform: translateX(-5px);
+}
+
+/* Анимации */
+.animate__animated {
+	--animate-duration: 0.5s;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+	.favourites {
+		width: 100%;
+		right: -100%;
+	}
+
+	#favBtn {
+		padding: 0.5rem 0.75rem;
+		font-size: 0.9rem;
+	}
+
+	.modal-content {
+		margin: 1rem;
+	}
+}
+
+/* Заглушка для отсутствующего постера */
+.no-poster {
+	background-color: var(--bg-dark);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	color: var(--text-muted);
+	font-size: 1.5rem;
+}
+
+/* Рейтинг */
+.rating-high {
+	color: #4caf50;
+}
+
+.rating-medium {
+	color: #ff9800;
+}
+
+.rating-low {
+	color: #f44336;
+}
+
+/* Кастомный скроллбар */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--bg-dark-2);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--primary);
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--primary-hover);
+}
