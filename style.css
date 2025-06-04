@@ -11,11 +11,17 @@
 	--border-color: #495057;
 }
 
+html, body {
+	height: 100%;
+}
+
 body {
 	background-color: var(--bg-dark);
 	color: var(--text-light);
 	overflow-x: hidden;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	display: flex;
+	flex-direction: column;
 }
 
 .bg-dark-2 {
@@ -39,6 +45,12 @@ header::after {
 	right: 0;
 	height: 100px;
 	background: linear-gradient(to bottom, transparent, var(--bg-dark));
+}
+
+main {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
 }
 
 /* Форма */
