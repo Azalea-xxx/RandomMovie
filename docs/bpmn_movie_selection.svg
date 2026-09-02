@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="900" viewBox="0 0 2600 900">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9Z" fill="#444"/></marker></defs>
+<rect x="0" y="0" width="2600" height="900" fill="#ffffff"/>
+<rect x="0" y="40" width="2560" height="800" fill="none" stroke="#333" stroke-width="2"/>
+<rect x="0" y="40" width="30" height="800" fill="#4a5568" />
+<text x="15" y="440" fill="#ffffff" font-size="18" font-family="Arial" font-weight="bold" text-anchor="middle" transform="rotate(-90 15 440)">Процесс подбора фильма в MoviePick</text>
+<line x1="30" y1="40" x2="2560" y2="40" stroke="#333" stroke-width="1.5"/>
+<rect x="30" y="40" width="140" height="200" fill="#eef0f3" stroke="#333" stroke-width="1"/>
+<text x="100" y="140.0" fill="#222" font-size="16" font-family="Arial" font-weight="bold" text-anchor="middle" transform="rotate(-90 100 140.0)">Пользователь</text>
+<line x1="30" y1="240" x2="2560" y2="240" stroke="#333" stroke-width="1.5"/>
+<rect x="30" y="240" width="140" height="200" fill="#eef0f3" stroke="#333" stroke-width="1"/>
+<text x="100" y="340.0" fill="#222" font-size="16" font-family="Arial" font-weight="bold" text-anchor="middle" transform="rotate(-90 100 340.0)">MoviePick (UI)</text>
+<line x1="30" y1="440" x2="2560" y2="440" stroke="#333" stroke-width="1.5"/>
+<rect x="30" y="440" width="140" height="200" fill="#eef0f3" stroke="#333" stroke-width="1"/>
+<text x="100" y="540.0" fill="#222" font-size="16" font-family="Arial" font-weight="bold" text-anchor="middle" transform="rotate(-90 100 540.0)">TMDB API</text>
+<line x1="30" y1="640" x2="2560" y2="640" stroke="#333" stroke-width="1.5"/>
+<rect x="30" y="640" width="140" height="200" fill="#eef0f3" stroke="#333" stroke-width="1"/>
+<text x="100" y="740.0" fill="#222" font-size="16" font-family="Arial" font-weight="bold" text-anchor="middle" transform="rotate(-90 100 740.0)">LocalStorage</text>
+<line x1="30" y1="840" x2="2560" y2="840" stroke="#333" stroke-width="1.5"/>
+<line x1="170" y1="40" x2="170" y2="840" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="270" cy="140.0" r="20" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2.5"/>
+<text x="270" y="178.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#444">Начало</text>
+<rect x="340.0" y="105.0" width="260" height="70" rx="10" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="470" y="135.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">Открыть приложение,</text>
+<text x="470" y="155.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">задать критерии поиска</text>
+<rect x="660.0" y="305.0" width="260" height="70" rx="10" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="790" y="335.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">Сформировать и отправить</text>
+<text x="790" y="355.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">запрос к TMDB API</text>
+<rect x="990.0" y="505.0" width="260" height="70" rx="10" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="1120" y="535.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">Обработать запрос,</text>
+<text x="1120" y="555.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">вернуть данные (JSON)</text>
+<polygon points="1420,292.0 1448,320.0 1420,348.0 1392,320.0" fill="#fff8e1" stroke="#f57f17" stroke-width="2"/>
+<text x="1420" y="326.0" font-size="20" font-family="Arial" font-weight="bold" text-anchor="middle" fill="#f57f17">X</text>
+<text x="1420" y="266.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#444">Ответ получен</text>
+<text x="1420" y="282.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#444">успешно?</text>
+<rect x="1560.0" y="285.0" width="240" height="70" rx="10" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="1680" y="315.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">Отобразить список /</text>
+<text x="1680" y="335.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">карточку фильма</text>
+<rect x="1560.0" y="385.0" width="240" height="70" rx="10" fill="#fdeaea" stroke="#333" stroke-width="1.5"/>
+<text x="1680" y="415.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">Показать сообщение</text>
+<text x="1680" y="435.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">об ошибке</text>
+<circle cx="1960" cy="420.0" r="21" fill="#fde8e8" stroke="#c62828" stroke-width="1.5"/>
+<circle cx="1960" cy="420.0" r="16" fill="none" stroke="#c62828" stroke-width="2.5"/>
+<text x="1960" y="458.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#444">Конец (ошибка)</text>
+<polygon points="1960,112.0 1988,140.0 1960,168.0 1932,140.0" fill="#fff8e1" stroke="#f57f17" stroke-width="2"/>
+<text x="1960" y="146.0" font-size="20" font-family="Arial" font-weight="bold" text-anchor="middle" fill="#f57f17">X</text>
+<text x="1960" y="86.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#444">Добавить в</text>
+<text x="1960" y="102.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#444">избранное?</text>
+<circle cx="2200" cy="140.0" r="21" fill="#fde8e8" stroke="#c62828" stroke-width="1.5"/>
+<circle cx="2200" cy="140.0" r="16" fill="none" stroke="#c62828" stroke-width="2.5"/>
+<text x="2200" y="178.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#444">Конец</text>
+<rect x="2085.0" y="265.0" width="230" height="70" rx="10" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="2200" y="295.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">Сохранить фильм</text>
+<text x="2200" y="315.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">в избранное (UI)</text>
+<rect x="2270.0" y="705.0" width="220" height="70" rx="10" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+<text x="2380" y="735.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">Записать данные</text>
+<text x="2380" y="755.0" font-size="15" font-family="Arial" text-anchor="middle" fill="#222">фильма в LocalStorage</text>
+<path d="M290 140.0 L340 140.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M600 140.0 L660 140.0 L660 340.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M920 340.0 L990 340.0 L990 540.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M1250 540.0 L1250 348.0 L1420 348.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M1448 320.0 L1560 320.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="1476.8" y="290.0" width="26.4" height="20" fill="#ffffff" opacity="0.9"/>
+<text x="1490" y="304.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#333">да</text>
+<path d="M1420 348.0 L1560 420.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="1473.2" y="424.0" width="33.6" height="20" fill="#ffffff" opacity="0.9"/>
+<text x="1490" y="438.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#333">нет</text>
+<path d="M1800 420.0 L1939 420.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M1800 320.0 L1800 112.0 L1960 112.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M1988 140.0 L2180 140.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="2023.2" y="112.0" width="33.6" height="20" fill="#ffffff" opacity="0.9"/>
+<text x="2040" y="126.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#333">нет</text>
+<path d="M1960 168.0 L1960 265.0 L2200 265.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="1990" y="195.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#333">да</text>
+<path d="M2315 300.0 L2270 300.0 L2270 740.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<path d="M2490 740.0 L2509 740.0" fill="none" stroke="#444" stroke-width="1.8" marker-end="url(#arrow)"/>
+<circle cx="2530" cy="740.0" r="21" fill="#fde8e8" stroke="#c62828" stroke-width="1.5"/>
+<circle cx="2530" cy="740.0" r="16" fill="none" stroke="#c62828" stroke-width="2.5"/>
+<text x="2530" y="778.0" font-size="13" font-family="Arial" text-anchor="middle" fill="#444">Конец</text>
+</svg>
