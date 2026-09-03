@@ -68,6 +68,12 @@ HTML5, CSS3, JavaScript (ES6+), Bootstrap 5, Animate.css, Font Awesome. Хран
 - **Избранное**: массив ID фильмов с основными атрибутами, хранится в LocalStorage
 - **Параметры поиска**: жанр, год, страна, рейтинг, длительность, способ сортировки
 
+## API-документация
+
+- **[openapi.yaml](./openapi.yaml)** - спецификация в формате OpenAPI/Swagger. Описывает реальные запросы к TMDB API, которые использует приложение (поиск по критериям, детали фильма, список жанров), а также предлагаемые эндпоинты для избранного (`/favorites`), если бы у приложения появился собственный backend вместо LocalStorage.
+- **[MoviePick.postman_collection.json](./MoviePick.postman_collection.json)** - коллекция запросов для Postman, соответствует спецификации выше. Импортируется в Postman.
+
+
 ## Метрики
 
 Отдельный документ [metrics.md](./metrics.md) показывает, как можно было бы измерять продукт: определения метрик (conversion rate, favorites conversion, RED-метрики надёжности API), синтетический набор данных и рабочие SQL-запросы с разбором логики каждого - см. [metrics_queries.sql](./metrics_queries.sql) и [schema.sql](./schema.sql).

@@ -1,0 +1,278 @@
+openapi: 3.0.3
+info:
+  title: MoviePick API
+  description: >
+    Спецификация API для приложения MoviePick (RandomMovie).
+    Состоит из двух частей:
+    1) реальная интеграция с внешним TMDB API, которую использует приложение сейчас;
+    2) предлагаемое расширение: собственный backend-эндпоинт для управления избранным,
+       который заменил бы текущее хранение в LocalStorage браузера, если бы у приложения
+       появился собственный сервер. Помечено как "proposed" в описании эндпоинтов.
+  version: 1.0.0
+  contact:
+    name: Камалова Азалия
+
+servers:
+  - url: https://api.themoviedb.org/3
+    description: Внешний TMDB API (используется сейчас)
+  - url: https://api.moviepick.example.com/v1
+    description: Предлагаемый собственный backend (proposed, не реализован)
+
+tags:
+  - name: TMDB Integration
+    description: Реальные запросы, которые приложение отправляет к TMDB API
+  - name: Favorites (proposed)
+    description: Предлагаемый API для избранного, если бы появился собственный backend
+
+paths:
+  /discover/movie:
+    get:
+      tags: [TMDB Integration]
+      summary: Поиск фильмов по критериям (жанр, год, рейтинг, страна)
+      description: >
+        Используется подсистемой фильтрации приложения для формирования
+        запроса на основе параметров, выбранных пользователем.
+      parameters:
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Ключ доступа к TMDB API
+        - name: with_genres
+          in: query
+          required: false
+          schema:
+            type: string
+          description: ID жанра (например, 28 — боевик, 35 — комедия)
+        - name: primary_release_year
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Год выпуска фильма
+        - name: vote_average.gte
+          in: query
+          required: false
+          schema:
+            type: number
+          description: Минимальный рейтинг фильма
+        - name: vote_average.lte
+          in: query
+          required: false
+          schema:
+            type: number
+          description: Максимальный рейтинг фильма
+        - name: with_origin_country
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Код страны производства (например, US, KR, FR)
+        - name: with_runtime.lte
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Максимальная длительность фильма в минутах
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+            example: popularity.desc
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: Список фильмов, соответствующих критериям
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovieCollection'
+        '401':
+          description: Неверный или отсутствующий API-ключ
+        '429':
+          description: Превышен лимит запросов к TMDB
+
+  /movie/{movie_id}:
+    get:
+      tags: [TMDB Integration]
+      summary: Получить подробную информацию о конкретном фильме
+      description: >
+        Используется при открытии карточки фильма — подгружает бюджет,
+        сборы, ссылку на трейлер и другие детали, которых нет в списке результатов поиска.
+      parameters:
+        - name: movie_id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Подробная карточка фильма
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedMovie'
+        '404':
+          description: Фильм с таким ID не найден
+
+  /genre/movie/list:
+    get:
+      tags: [TMDB Integration]
+      summary: Получить список доступных жанров
+      description: Используется для заполнения выпадающего списка фильтра по жанрам.
+      parameters:
+        - name: api_key
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Список жанров
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  genres:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Genre'
+
+  /favorites:
+    get:
+      tags: [Favorites (proposed)]
+      summary: (proposed) Получить список избранных фильмов пользователя
+      description: >
+        Сейчас реализовано через LocalStorage браузера. Этот эндпоинт — предложение
+        для случая, если приложение получит собственный backend и аккаунты пользователей,
+        чтобы избранное синхронизировалось между устройствами.
+      responses:
+        '200':
+          description: Список избранных фильмов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FavoriteMovie'
+    post:
+      tags: [Favorites (proposed)]
+      summary: (proposed) Добавить фильм в избранное
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                movieId:
+                  type: integer
+              required: [movieId]
+      responses:
+        '201':
+          description: Фильм добавлен в избранное
+        '409':
+          description: Фильм уже добавлен в избранное
+
+  /favorites/{movieId}:
+    delete:
+      tags: [Favorites (proposed)]
+      summary: (proposed) Удалить фильм из избранного
+      parameters:
+        - name: movieId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Фильм удалён из избранного
+        '404':
+          description: Фильм не найден в избранном
+
+components:
+  schemas:
+    Genre:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+
+    Movie:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        original_title:
+          type: string
+        poster_path:
+          type: string
+        vote_average:
+          type: number
+        release_date:
+          type: string
+          format: date
+        genre_ids:
+          type: array
+          items:
+            type: integer
+        origin_country:
+          type: array
+          items:
+            type: string
+
+    MovieCollection:
+      type: object
+      properties:
+        page:
+          type: integer
+        total_results:
+          type: integer
+        total_pages:
+          type: integer
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Movie'
+
+    DetailedMovie:
+      allOf:
+        - $ref: '#/components/schemas/Movie'
+        - type: object
+          properties:
+            budget:
+              type: integer
+            revenue:
+              type: integer
+            runtime:
+              type: integer
+            homepage:
+              type: string
+            imdb_id:
+              type: string
+
+    FavoriteMovie:
+      type: object
+      properties:
+        movieId:
+          type: integer
+        dateAdded:
+          type: string
+          format: date-time

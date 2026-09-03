@@ -1,0 +1,215 @@
+{
+  "info": {
+    "_postman_id": "9fb686a5-bb4b-4fc1-88bd-54c9e4b35a69",
+    "name": "MoviePick API",
+    "description": "Коллекция запросов для MoviePick: реальная интеграция с TMDB API и предлагаемые эндпоинты для избранного. Соответствует openapi.yaml.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "api_key",
+      "value": "YOUR_TMDB_API_KEY",
+      "type": "string"
+    },
+    {
+      "key": "movie_id",
+      "value": "27205",
+      "type": "string"
+    },
+    {
+      "key": "baseUrlProposed",
+      "value": "https://api.moviepick.example.com/v1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "TMDB Integration",
+      "item": [
+        {
+          "name": "Поиск фильмов по критериям",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.themoviedb.org/3/discover/movie?api_key={{api_key}}&with_genres=28&primary_release_year=2023&vote_average.gte=6&sort_by=popularity.desc&page=1",
+              "protocol": "https",
+              "host": [
+                "api",
+                "themoviedb",
+                "org"
+              ],
+              "path": [
+                "3",
+                "discover",
+                "movie"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                },
+                {
+                  "key": "with_genres",
+                  "value": "28",
+                  "description": "28 = боевик"
+                },
+                {
+                  "key": "primary_release_year",
+                  "value": "2023"
+                },
+                {
+                  "key": "vote_average.gte",
+                  "value": "6"
+                },
+                {
+                  "key": "sort_by",
+                  "value": "popularity.desc"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Формирует запрос на основе фильтров пользователя (жанр, год, рейтинг)."
+          },
+          "response": []
+        },
+        {
+          "name": "Детали конкретного фильма",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.themoviedb.org/3/movie/{{movie_id}}?api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "themoviedb",
+                "org"
+              ],
+              "path": [
+                "3",
+                "movie",
+                "{{movie_id}}"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Подробная карточка фильма при открытии (бюджет, сборы, homepage)."
+          },
+          "response": []
+        },
+        {
+          "name": "Список жанров",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.themoviedb.org/3/genre/movie/list?api_key={{api_key}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "themoviedb",
+                "org"
+              ],
+              "path": [
+                "3",
+                "genre",
+                "movie",
+                "list"
+              ],
+              "query": [
+                {
+                  "key": "api_key",
+                  "value": "{{api_key}}"
+                }
+              ]
+            },
+            "description": "Для заполнения фильтра по жанрам в интерфейсе."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Favorites (proposed)",
+      "item": [
+        {
+          "name": "Получить список избранного",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrlProposed}}/favorites",
+              "host": [
+                "{{baseUrlProposed}}"
+              ],
+              "path": [
+                "favorites"
+              ]
+            },
+            "description": "Предлагаемый эндпоинт собственного backend (сейчас — LocalStorage)."
+          },
+          "response": []
+        },
+        {
+          "name": "Добавить фильм в избранное",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrlProposed}}/favorites",
+              "host": [
+                "{{baseUrlProposed}}"
+              ],
+              "path": [
+                "favorites"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"movieId\": 27205\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Предлагаемый эндпоинт собственного backend."
+          },
+          "response": []
+        },
+        {
+          "name": "Удалить фильм из избранного",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrlProposed}}/favorites/{{movie_id}}",
+              "host": [
+                "{{baseUrlProposed}}"
+              ],
+              "path": [
+                "favorites",
+                "{{movie_id}}"
+              ]
+            },
+            "description": "Предлагаемый эндпоинт собственного backend."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
